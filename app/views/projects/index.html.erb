@@ -1,0 +1,11 @@
+<div class="container-fluid min-vh-100">
+    <h4 class="page-title">Projects List</h4>
+    <div>
+        <%= link_to "Create Project", new_project_path(), class:"bi bi-plus btn button-create-project rounded-pill text-light mb-3" %>
+    </div>
+    <div class="row">
+        <%= render partial: "card_project", collection: @projects %> 
+    </div>
+        
+    
+</div>

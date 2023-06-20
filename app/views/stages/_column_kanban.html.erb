@@ -1,0 +1,12 @@
+<div class="col-md-6 col-xxl-2">
+    <div>
+        <h6 class="task-header">
+            <%= column_kanban.name %> (<%= get_total_tasks(column_kanban.id) %>)
+        </h6>
+        
+        <div>
+            <!-- Task Item -->
+            <%= render partial: "card_task", collection: get_tasks(column_kanban.id) %> 
+        </div>
+    </div>
+</div>

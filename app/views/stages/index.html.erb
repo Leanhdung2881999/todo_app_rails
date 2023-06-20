@@ -1,0 +1,13 @@
+<div class="min-vh-100 d-flex flex-column">
+    <div class="d-flex align-items-center mb-4">
+        <h4 class="page-title mx-3">Kanban Tasks</h4>
+        <%# <div> %>
+            <%#= link_to "New Task", new_project_task_path(), class:"btn btn-sm button-create-task rounded-pill text-light" %>
+        <%# </div> %>
+    </div>
+    <div class="row row-stage no-scrollbar">
+        <%= render partial: "column_kanban", collection: @stages %> 
+    </div>
+        
+    
+</div>

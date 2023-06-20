@@ -68,6 +68,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
+    bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -90,10 +91,16 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    faker (3.2.0)
+      i18n (>= 1.8.11, < 2)
+    ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     io-console (0.6.0)
     irb (1.7.0)
       reline (>= 0.3.0)
@@ -113,6 +120,7 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
+    mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.18.0)
     msgpack (1.7.1)
@@ -168,6 +176,8 @@ GEM
     reline (0.3.5)
       io-console (~> 0.5)
     rexml (3.2.5)
+    ruby-vips (2.1.4)
+      ffi (~> 1.12)
     rubyzip (2.3.2)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -210,10 +220,13 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
+  bcrypt
   bootsnap
   capybara
   cssbundling-rails
   debug
+  faker
+  image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
   mysql2 (~> 0.5)

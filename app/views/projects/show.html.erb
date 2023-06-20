@@ -1,0 +1,75 @@
+<div class="container-fluid min-vh-100">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="d-flex align-items-center">
+            <div class="page-title">
+                Project Detail
+            </div>
+            <div class="d-flex gap-2 mx-3">
+                <%= link_to "Edit", edit_project_path(), class: "btn btn-sm button-create-task rounded-pill text-light" %>
+                <%= button_to "Delete", @project, method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "btn btn-sm button-edit-task rounded-pill text-light" %>
+            </div>
+        </div>
+    </div>
+    <div class="card d-flex flex-column d-block border-light shadow-sm">
+        <div class="card-body">
+            <h3 class="title-task mb-4 row">
+                <div class="col-lg-4">
+                    <%= @project.name %> 
+                </div>
+            </h3>
+
+            <div class="row">
+                <div class="col-6">
+                    <p class="mt-2 mb-1 text-muted font-12 fw-bold text2 text-uppercase">Start Time:</p>
+                    <div class="d-flex">
+                        <h5 class="d-flex gap-3 align-items-center mt-1 font-14 fw-bold text">
+                            <%= @project.start_time.to_fs(:month_day_comma_year) %>
+                        </h5>
+                    </div>
+                </div> 
+                
+                <div class="col-6">
+                    <p class="mt-2 mb-1 text-muted fw-bold font-12 text2 text-uppercase">End Time:</p>
+                    <div class="d-flex">
+                        <h5 class="d-flex gap-3 align-items-center mt-1 font-14 fw-bold text">
+                            <%= @project.end_time.to_fs(:month_day_comma_year) %>
+                        </h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row pt-2 pb-4">
+                <div class="col-6">
+                    <div class="mt-2 mb-1 text-muted font-12 fw-bold text2 text-uppercase">Assigned To:</div>
+                    <h5 class="mt-1 font-14 fw-bold text">
+                        <%= @project.user.name %> 
+                    </h5>
+                </div> 
+                
+                <div class="col-6">
+                    <p class="mt-2 mb-1 text-muted fw-bold font-12 text2 text-uppercase">Budget:</p>
+                    <h5 class="mt-1 font-14 fw-bold text">
+                        <%= @project.budget %> 
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row pt-2 pb-4">
+                <div class="col-6">
+                    <div class="mt-2 mb-1 text-muted font-12 fw-bold text2 text-uppercase">Tag:</div>
+                    <div class="badge <%= @project.tag.type_tag %>">
+                        <%= @project.tag.type_tag %> 
+                    </div> 
+                </div>
+            </div>
+
+            <div>
+                <h5 class="mt-3 text font-14">Description:</h5>
+                <div class="text-muted text font-14 mb-4">
+                    <%= @project.description %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

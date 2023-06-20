@@ -1,0 +1,75 @@
+<div class="container-fluid min-vh-100">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="d-flex align-items-center">
+            <div class="page-title">
+                Task Detail
+            </div>
+            <div class="mx-3">
+                <%= link_to "Create Task", new_project_stage_task_path(project_id: @task.project_id, stage_id: @task.stage_id), class:"btn btn-sm button-create-task rounded-pill text-light" %>
+                <%= link_to "Edit Task", edit_project_stage_task_path(project_id: @task.project_id, stage_id: @task.stage_id, id:@task.id), class:"btn btn-sm button-edit-task rounded-pill text-light" %>
+            </div>
+        </div>
+    </div>
+    <div class="card d-flex flex-column d-block border-light shadow-sm">
+        <div class="card-body">
+            <h3 class="title-task mb-4">
+                <%= @task.name %>
+            </h3>
+
+            <div class="row">
+                <div class="col-6">
+                    <p class="mt-2 mb-1 text-muted font-12 fw-bold text2 text-uppercase">Project:</p>
+                    <div class="d-flex">
+                        <i class="bi bi-box-arrow-up-right text-primary me-2"></i>
+                        <h5 class="mt-1 font-14 text-primary fw-bold text">
+                            <%= @task.project.name %>
+                        </h5>
+                    </div>
+                </div> 
+
+                <div class="col-6">
+                    <p class="mt-2 mb-1 text-muted fw-bold font-12 text2 text-uppercase">Stage:</p>
+                    <div class="d-flex">
+                        <i class="bi bi-box-arrow-up-right text-primary me-2"></i>
+                        <h5 class="mt-1 font-14 fw-bold text-primary text">
+                            <%= @task.stage.name %>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-2 pb-4">
+                <div class="col-6">
+                    <p class="mt-2 mb-1 text-muted font-12 fw-bold text2 text-uppercase">Assigned To:</p>
+                    <p class="mb-0">
+                        <%= image_tag @task.user.avatar, style:"width:28px", class: "me-1" %>
+                        <span class="align-middle font-14 fw-bold text"><%= @task.user.name %></span>
+                    </p>
+                </div> 
+
+                <div class="col-6">
+                    <p class="mt-2 mb-1 text-muted fw-bold font-12 text2 text-uppercase">Due Date:</p>
+                    <div class="d-flex">
+                        <i class="bi bi-calendar4-week me-2 text-success"></i>
+                        <div>
+                            <h5 class="mt-1 font-14 fw-bold text">
+                               <%= @task.deadline.to_fs(:long) %>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h5 class="mt-3 text font-14">Description:</h5>
+
+                <p class="text-muted text font-14 mb-4">
+                    <%= @task.description %>
+                </p>
+            </div>
+
+            
+
+        </div> <!-- end card-body-->
+
+    </div>
+</div>

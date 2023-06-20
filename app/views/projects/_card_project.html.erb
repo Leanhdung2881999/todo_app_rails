@@ -1,0 +1,71 @@
+<div class="col-md-6 col-xxl-3">
+    <div class="card d-block border-light shadow-sm mb-4">
+        <%= link_to project_stages_path(project_id: card_project.id) do %>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <!-- project title-->
+                    <div class="text-decoration-none">
+                        <h6 class="text-center">
+                            <%= card_project.name %>
+                        </h6>
+                    </div>
+                    <div class="dropdown card-widgets">
+                        <a href="#" class="btn dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a href=<%= edit_project_path(card_project.id) %> class="dropdown-item font-14 text">
+                                <i class="bi bi-pencil me-2 icon-12"></i>
+                                Edit
+                            </a>
+                            <%= link_to project_path(card_project.id), data: { "turbo-method": :delete }, class:"dropdown-item font-14 text" do %>
+                                <i class="bi bi-trash me-2 icon-12"></i>
+                                Delete
+                            <% end %>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="badge <%= card_project.tag.type_tag %>">
+                    <%= card_project.tag.type_tag %>
+                </div>
+
+                <div class="d-flex align-items-center mt-3">
+                    <h5 class="d-flex gap-3 align-items-center font-12 fw-bold text">
+                        <%= card_project.start_time.to_fs(:month_day_comma_year) %>
+                    </h5>
+                    <div class="mb-2 mx-2 rounded" style="width:4px;height:2px;background-color:#6C757D"></div>
+                    <h5 class="d-flex gap-3 align-items-center font-12 fw-bold text">
+                        <%= card_project.end_time.to_fs(:month_day_comma_year) %>
+                    </h5>
+                </div>
+
+                <p class="text-muted font-13 my-2">
+                    <%= truncate(strip_tags(card_project.description.to_s), length: 100) %>
+                </p>
+
+                <!-- project detail-->
+                <div class="mb-1">
+                    <span class="pe-2 text-nowrap mb-2 d-inline-block text fw-semibold">
+                        <i class="bi bi-list-task"></i>
+                        <%= get_total_tasks(card_project.id)%> Tasks
+                    </span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <% if get_user_avatars(card_project.id).length > 3 %>
+                        <% get_user_avatars(card_project.id).take(3).each do |avatar| %>
+                            <img src=<%= avatar %> class="rounded-circle" style="width: 32px; height: 32px">
+                        <% end %>
+                        <div class="px-2 text font-14 fw-bold">+<%= get_user_avatars(card_project.id).length - 3 %> more</div>
+                    <% else %>
+                        <% get_user_avatars(card_project.id).each do |avatar| %>
+                            <img src=<%= avatar %> class="rounded-circle" style="width: 32px; height: 32px">
+                        <% end %>
+                    <% end %>
+                    
+                </div>
+            </div> <!-- end card-body-->
+        <% end %>
+    </div>
+</div>

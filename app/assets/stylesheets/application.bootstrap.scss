@@ -1,2 +1,165 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+@font-face {
+    font-family: "Product Sans Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: font-url("ProductSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Product Sans Bold";
+    font-style: normal;
+    font-weight: 700;
+    font-display: block;
+    src: font-url("ProductSans-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Product Sans Medium";
+    font-style: normal;
+    font-weight: 500;
+    font-display: block;
+    src: font-url("ProductSans-Medium.ttf");
+}
+
+.container-fluid {
+    background: #f0f3f8;
+    height: 100%;
+}
+
+.header {
+    background: #ffffff;
+}
+
+.form-control {
+    background-color: #f0f3f8;
+}
+
+.card-task {
+    background-color: #fff;
+}
+
+.row-stage {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.row-stage::-webkit-scrollbar {
+    display: none
+}
+
+.col-stage {
+    display: inline-block;
+    border: 1px solid #dee2e6;
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+.col-stage.col-stage:not(:last-child) {
+    margin-right: 1.25rem;
+}
+
+.task-header {
+    color: #6C757D;
+}
+
+.button-search {
+    background-color: #727cf5;
+}
+
+.button-search:hover {
+    background: #727cf5;
+    opacity: 0.5;
+}
+
+.button-create-project {
+    background-color: #fa5c7c;
+}
+
+.button-create-project:hover {
+    background-color: #fa5c7c;
+    opacity: 0.5;
+}
+
+.button-create-task {
+    background-color: #0acf97;
+}
+
+.button-create-task:hover {
+    background-color: #0acf97;
+    opacity: 0.5;
+}
+
+.button-edit-task {
+    background-color: #fa5c7c !important;
+}
+
+.button-edit-task:hover {
+    background-color: #fa5c7c;
+    opacity: 0.5;
+}
+
+.page-title {
+    font-size: 18px;
+    margin: 0;
+    color: #6C757D;
+    line-height: 75px;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.icon-12 {
+    font-size: 12px;
+}
+
+.low {
+    background-color: #0acf97;
+}
+
+.medium {
+    background-color: #ffdd18;
+}
+
+.high {
+    background-color: #f3252e;
+}
+
+.title-task {
+    color: #6C757D;
+    padding-bottom: 2;
+    font-weight: 600;
+}
+
+.text {
+    color: #6C757D;
+}
+
+.text2 {
+    color: #6C757D;
+    opacity: 0.7;
+}
+
+.font-12 {
+    font-size: 12px !important;
+}
+
+.font-14 {
+    font-size: 14px !important;
+}
+
+.font-16 {
+    font-size: 16px !important;
+}
+
+// end breadcrumb@import 'actiontext.css';
