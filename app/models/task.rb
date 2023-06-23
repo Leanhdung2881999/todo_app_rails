@@ -5,5 +5,5 @@ class Task < ApplicationRecord
     belongs_to :user, class_name: 'User', foreign_key: 'user_id', optional: true
     has_rich_text :description
 
-    validates :description, presence: true
+    # validates :description, presence: true
 end

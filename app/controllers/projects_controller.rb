@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to root_path
-   end
+  end
 
   def get_total_tasks(project_id)
     Task.where(project_id: project_id).count
@@ -78,6 +78,11 @@ class ProjectsController < ApplicationController
     return avatars
   end
 
+  def filter_stages_by_project
+    @stages = Stage.where(project_id: params[:project_id])
+  end
+
   helper_method :get_total_tasks
   helper_method :get_user_avatars
+  helper_method :filter_stages_by_project
 end

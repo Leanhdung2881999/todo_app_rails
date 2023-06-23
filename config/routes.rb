@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # get '/tasks', to: 'tasks#index'
   resources :stages
   resources :tasks
+  get 'filter_stages_by_project', to: 'projects#filter_stages_by_project'
 
   # resources :tasks
 
