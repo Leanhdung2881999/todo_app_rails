@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-    protect_from_forgery with: :exception 
+    include Pagy::Backend
+    protect_from_forgery with: :exception
+    Pagy::DEFAULT[:items] = 5
   
     private   
     def current_user   

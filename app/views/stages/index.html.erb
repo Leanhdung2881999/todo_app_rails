@@ -1,13 +1,42 @@
 <div class="min-vh-100 d-flex flex-column">
     <div class="d-flex align-items-center mb-4">
         <h4 class="page-title mx-3">Kanban Tasks</h4>
-        <div> 
-            <%= link_to "New Task", new_task_path(), class:"btn btn-sm button-create-task rounded-pill text-light" %>
+        <div>
+            <button type="button" class="btn btn-sm button-create-task rounded-pill text-light" data-bs-toggle="modal" data-bs-target="#createNewStage">New Stage</button>
         </div>
     </div>
     <div class="row row-stage no-scrollbar">
-        <%= render partial: "column_kanban", collection: @stages %> 
+        <%= render partial: "column_kanban", collection: @stages %>
     </div>
-        
     
+</div>
+
+<!-- Modal Create Stage -->
+<div class="modal fade" id="createNewStage" tabindex="-1" aria-labelledby="createNewStageLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-lg">
+            <%= form_with model: Stage.new(project_id: params[:project_id]) do |form| %>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="createNewStageLabel">New Stage</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="title-task mb-4 row">
+                            <div class="form-group mt-1 font-14 fw-bold text">
+                                <%= form.label "Name:", class: "label-control mb-2" %>
+                                <%= form.text_field :name, class: "form-control" %> 
+                            </div>
+                        </h3>
+                        <div class="form-group d-none mt-1 font-14 text-primary fw-bold text">
+                            <%= form.select :project_id, options_from_collection_for_select(get_projects, :id, :name, params[:project_id]), {}, { class: "form-select" } %>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <%= form.submit "Create", class: "btn btn-sm button-create-task rounded-pill text-light", "data-bs-dismiss": "modal" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
 </div>

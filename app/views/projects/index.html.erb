@@ -6,6 +6,9 @@
     <div class="row">
         <%= render partial: "card_project", collection: @projects %> 
     </div>
+    <div class="d-flex justify-content-center">
+        <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
         
     
 </div>

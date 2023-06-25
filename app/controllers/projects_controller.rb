@@ -12,7 +12,13 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.owner_projects(current_user.id)
+    search_value = params[:search_value]
+    if search_value.blank?.!
+      @projects = Project.owner_projects(current_user.id).search(search_value)
+    else
+      @projects = Project.owner_projects(current_user.id)
+    end
+    @pagy, @projects = pagy(@projects)
   end
 
   def show

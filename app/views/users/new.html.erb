@@ -6,8 +6,14 @@
           class="img-fluid" alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 font-14 fw-bold text">
-        <%= form_with url: sessions_path do |form| %>   
-          <h1 class="text-center">Sign In</h1>   
+        <%= form_with model: @user do |form| %>   
+          <h1 class="text-center">Register</h1>   
+          <!-- Name input -->
+          <div class="form-group mb-4">
+            <%= form.label "Name", class: "label-control" %>
+            <%= form.text_field :name, class: "form-control form-control-login" %>
+          </div>
+
           <!-- Email input -->
           <div class="form-group mb-4">
             <%= form.label "Email", class: "label-control" %>
@@ -20,23 +26,12 @@
             <%= form.text_field :password, class: "form-control form-control-login" %>
           </div>
 
-          <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
-            <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
-            </div>
-            <%# <a href="#!" class="text-body">Forgot password?</a> %>
-          </div>
-
           <div class="text-center mt-4 pt-2">
-            <%= form.submit "Sign In", class: "btn btn-primary" %>  
+            <%= form.submit "Register", class: "btn btn-primary" %>  
             <div class="small fw-bold mt-2 pt-1 mb-0">
-              Don't have an account? 
-              <a href=<%= signup_path %> class="link-danger">
-                Register
+              Have an account? 
+              <a href=<%= login_path %> class="link-danger">
+                Sign In
               </a>
             </div>
           </div>

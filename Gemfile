@@ -76,3 +76,4 @@ end
 
 gem "faker"
 gem "bcrypt"
+gem "pagy", "~> 6.0"

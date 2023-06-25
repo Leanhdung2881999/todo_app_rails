@@ -1,12 +1,27 @@
 <div class="col-md-6 col-xxl-2">
-    <div>
+    <div class="d-flex justify-content-between align-items-center">
         <h6 class="task-header">
             <%= column_kanban.name %> (<%= get_total_tasks(column_kanban.id) %>)
         </h6>
-        
         <div>
-            <!-- Task Item -->
-            <%= render partial: "card_task", collection: get_tasks(column_kanban.id) %> 
+            <a href="#" class="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end">
+                <a href=<%= new_project_stage_task_path(project_id: column_kanban.project_id, stage_id: column_kanban.id) %> class="dropdown-item font-14 text">
+                    <i class="bi bi-pencil me-2 icon-12"></i>
+                    New Task
+                </a>
+                <%= button_to column_kanban, method: :delete, data: { "turbo-method": :delete }, class:"dropdown-item font-14 text" do %>
+                    <i class="bi bi-trash me-2 icon-12"></i>
+                    Delete
+                <% end %>
+            </div>
         </div>
+    </div>
+    
+    <div>
+        <!-- Task Item -->
+        <%= render partial: "card_task", collection: get_tasks(column_kanban.id) %> 
     </div>
 </div>

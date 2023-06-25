@@ -31,7 +31,6 @@
                         <p class="mt-2 mb-1 text-muted font-12 fw-bold text2 text-uppercase">Project:</p>
                         <div class="d-flex">
                             <div class="form-group mt-1 font-14 text-primary fw-bold text">
-                            <% console%>
                                 <%= form.select :project_id, options_from_collection_for_select(get_projects, :id, :name, params[:project_id]), {}, { class: "form-select" } %>
                             </div>
                         </div>

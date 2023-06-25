@@ -6,4 +6,11 @@ class Task < ApplicationRecord
     has_rich_text :description
 
     # validates :description, presence: true
+    def self.search(search_value)
+        if search_value
+            where('name LIKE ?', "%#{search_value}%")
+        else
+            all
+        end
+    end
 end
