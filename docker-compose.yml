@@ -35,4 +35,3 @@ services:
 # コンテナを作り直したとしてもPC上に残るようにするために設定
 volumes:
   db-volume:
-todoapp
