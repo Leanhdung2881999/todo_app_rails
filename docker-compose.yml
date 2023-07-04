@@ -2,14 +2,17 @@ version: "3"
 services:
     app:
         # build: .でdocker-compose.ymlと同じフォルダにDockerfileがあることを示す
-        build: .
-        # build:
-        #     context: .
-        #     dockerfile: ./docker/app/DockerFile
+        # build: .
+        build:
+            context: .
+            dockerfile: ./docker/app/DockerFile
         # 毎回 rm tmp/pids/server.pid するのも手間であるため、・事前に手元で/tmp/pids/server.pidを削除する
         command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
         volumes:
             - .:/app
+            - public-data:/app/public
+            - log-data:/app/log
+            - tmp-data:/app/tmp
         ports:
             - 3001:3001
         depends_on:
@@ -19,14 +22,18 @@ services:
         tty: true
         # stdin_openとは標準入出力とエラー出力をコンテナに結びつける設定です。
         stdin_open: true
-    # web:
-    #     build:
-    #         context: .
-    #         dockerfile: ./docker/web/DockerFile
-    #     depends_on:
-    #         - app
-    #     ports:
-    #         - 80:80
+    web:
+        build:
+            context: .
+            dockerfile: ./docker/web/DockerFile
+        volumes:
+            - public-data:/app/public
+            - log-data:/app/log
+            - tmp-data:/app/tmp
+        depends_on:
+            - app
+        ports:
+            - 8081:80
     db:
         image: mysql:5.7
         # M1のCPUは、linux/arm64/v8なのですが、使用しようとしたimageがこれに対応していないというエラーが起きる
@@ -46,3 +53,6 @@ services:
 # コンテナを作り直したとしてもPC上に残るようにするために設定
 volumes:
     db-volume:
+    public-data:
+    tmp-data:
+    log-data:

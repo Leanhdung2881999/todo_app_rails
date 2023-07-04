@@ -26,7 +26,7 @@ RUN gem update --system ${RUBYGEMS_VERSION} && \
 COPY . /app
 
 # コンテナ起動時に実行させるスクリプトを追加
-COPY entrypoint.sh /usr/bin/
+COPY docker/app/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3001
