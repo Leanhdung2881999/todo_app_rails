@@ -6,6 +6,16 @@ FROM ruby:3.2.2
 
 # ruby3.1のイメージがBundler version 2.3.7で失敗するので、gemのバージョンを追記
 # ARG RUBYGEMS_VERSION=3.2.2
+ARG RAILS_ENV=production
+ARG NODE_ENV=production
+ARG MY_APP_DATABASE_URL="mysql2://todo_app_rails:Hihihehe!23@database-railstodo-1.cct4eied9f8k.ap-southeast-1.rds.amazonaws.com/todo_app_rails_production"
+
+RUN \
+  apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs vim && \
+  wget https://dl.yarnpkg.com/debian/pubkey.gpg && \
+  apt-key add pubkey.gpg && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+  apt-get update -qq && apt-get install -y yarn
 
 # RUN：任意のコマンド実行
 RUN mkdir /app
@@ -30,6 +40,15 @@ COPY docker/app/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
+
+
+RUN SECRET_KEY_BASE=4281a48d304a049657d46d7d0f33074a bundle exec rails assets:precompile assets:clean && \
+  yarn cache clean && \
+  rm -rf node_modules tmp/cache
+
+RUN bundle exec rake db:create
+
+RUN bundle exec rake db:migrate
 
 # CMD:コンテナ実行時、デフォルトで実行したいコマンド
 # Rails サーバ起動
